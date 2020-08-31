@@ -1,8 +1,10 @@
 // Calculate listener
-document.getElementById('loan-form').addEventListener('submit', calculate);
+document.getElementById('loanForm').addEventListener('submit', calculate);
+
 
 // Calculate function
 function calculate(e){
+    console.log('calculating');
     // Constant UI variables
     const amountEl = document.getElementById('amount');
     const interestEl = document.getElementById('interest'); 
@@ -25,8 +27,21 @@ function calculate(e){
         totalInterestEl.value = ((monthly * calculatedPay)-principal).toFixed(2);
     }
     else{
-
+        showError('Please check you inputs.');
     }
 
-    e.preventDefault();
+    e.preventDeafult();
+}
+
+// Error
+function showError(error){
+    // Create
+    const errorDiv = document.createElement('div');
+    const card = document.querySelector('.card'); 
+
+    // Add class
+    errorDiv.className = 'alert alert-danger';
+
+    // Create text node
+    errorDiv.appendChild(document.createTextNode(error)); 
 }
